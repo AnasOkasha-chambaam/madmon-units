@@ -27,7 +27,7 @@ export default function UnitsPage() {
   });
 
   return (
-    <div className="min-h-screen bg-[#F8F9FB]">
+    <div className="min-h-screen">
       <div className="flex">
         <SideNav />
         <main className="flex-1 p-8">
