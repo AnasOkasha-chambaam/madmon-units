@@ -6,7 +6,7 @@ import UserDropdown from "./user-dropdown";
 
 export function TopNav() {
   return (
-    <header className="border-b shadow-md px-3 sticky top-0 z-40 bg-background">
+    <header className="border-b shadow-lg px-3 sticky top-0 z-40 bg-background">
       <div className="container mx-auto flex h-16 w-full items-center justify-between">
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center">

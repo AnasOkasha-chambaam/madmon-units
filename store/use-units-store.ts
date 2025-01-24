@@ -1,13 +1,8 @@
 import { create } from "zustand";
 
-type SortOption = "date" | "price";
-
-interface UnitsStore {
-  sortBy: SortOption;
-  setSortBy: (sort: SortOption) => void;
-}
-
-export const useUnitsStore = create<UnitsStore>((set) => ({
+export const useUnitsStore = create<TUnitsStore>((set) => ({
   sortBy: "date",
+  sortDirection: "desc",
+  setSortDirection: (sortDirection) => set({ sortDirection }),
   setSortBy: (sortBy) => set({ sortBy }),
 }));

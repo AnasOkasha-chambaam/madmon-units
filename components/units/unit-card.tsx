@@ -1,7 +1,23 @@
-import { formatDistanceToNow } from "date-fns";
-import { Bath, BedDouble, Ruler, Trash2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { cn, formatPrice } from "@/lib/utils";
+import {
+  Bath,
+  BathIcon,
+  BedSingleIcon,
+  Ruler,
+  Trash2,
+  UserIcon,
+} from "lucide-react";
+import { RiRuler2Line } from "react-icons/ri";
+import Image from "next/image";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
 
 interface UnitCardProps {
   unit: TUnit;
@@ -9,89 +25,117 @@ interface UnitCardProps {
 }
 
 export function UnitCard({ unit, onDelete }: UnitCardProps) {
-  const statusConfig = {
-    approved: { color: "bg-green-500", label: "Approved" },
-    pending: { color: "bg-[#7666F9]", label: "Pending" },
-    reserved: { color: "bg-blue-500", label: "Reserved" },
-    rejected: { color: "bg-red-500", label: "Rejected" },
-    sold: { color: "bg-purple-500", label: "Sold" },
-  }[unit.status.toLowerCase()] || { color: "bg-gray-500", label: unit.status };
-
   return (
-    <div className="relative flex bg-white rounded-lg overflow-hidden">
-      <div className="relative w-[240px] h-[180px]">
+    <Card className="relative bg-muted flex rounded-3xl overflow-hidden shadow-lg">
+      {/* Image */}
+      <div className="relative">
         {unit.status.toLowerCase() === "reserved" && (
-          <div className="absolute left-0 top-4 bg-blue-500 text-white px-4 py-1 text-sm font-medium">
+          <Badge
+            variant={"madmon-reserved"}
+            className="absolute left-0 top-0 px-6 py-2 text-xs font-medium rounded-3xl !rounded-bl-none !rounded-tr-none"
+          >
             Reserved
-          </div>
+          </Badge>
         )}
-        <img
+        <Image
           src={unit.coverUrl || "/placeholder.svg"}
           alt={unit.name}
-          className="w-full h-full object-cover"
+          width={140}
+          height={190}
+          className="w-80 h-full object-cover"
         />
       </div>
-
-      <div className="flex-1 p-4">
-        <div className="flex items-start justify-between">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <h3 className="font-semibold text-lg">{unit.name}</h3>
-              <Badge
-                className={`${statusConfig.color} text-white border-0`}
-                variant="secondary"
-              >
-                {statusConfig.label}
-              </Badge>
+      {/* Content */}
+      <CardContent className="w-full">
+        <CardHeader className="flex-1 pt-7 pb-0 px-0">
+          <div className="flex items-start justify-between">
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <CardTitle className="font-normal">
+                  {/* {unit.name} */}
+                  Grand House Real Estate
+                </CardTitle>
+                <Badge
+                  variant={`madmon-${unit.status.toLowerCase() as TUnitStatus}`}
+                >
+                  {unit.status[0].toUpperCase() + unit.status.slice(1)}
+                </Badge>
+              </div>
+              <CardDescription className="text-base text-madmon-secondary-foreground">
+                {unit.address}
+              </CardDescription>
             </div>
-            <p className="text-sm text-muted-foreground">{unit.address}</p>
-          </div>
-          <div className="text-right">
-            <p className="font-bold text-2xl text-red-500">
-              {new Intl.NumberFormat("en-EG", {
-                style: "currency",
-                currency: "EGP",
-                maximumFractionDigits: 0,
-              }).format(unit.price)}
-            </p>
-            <p className="text-xs text-muted-foreground mt-1">
-              Added {formatDistanceToNow(new Date(unit.createdAt))} ago
-            </p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-6 mt-4 mb-6">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <div className="w-6 h-6 rounded bg-blue-50 flex items-center justify-center">
-              <BedDouble className="h-4 w-4 text-blue-500" />
+            <div className="text-right">
+              <p className="font-semibold text-2xl text-money">
+                {formatPrice(unit.price).replace("EGP", "")}{" "}
+                <span className="font-normal text-base">EGP</span>
+              </p>
             </div>
+          </div>
+        </CardHeader>
+
+        <div className="flex items-center gap-6 my-4">
+          <div className="flex items-center gap-2 text-sm text-madmon-secondary-foreground">
+            <Badge variant={"madmon-secondary"} className="p-1.5">
+              <BedSingleIcon className="size-[18px]" />
+            </Badge>
             {unit.bedroomsNumber} Rooms
           </div>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <div className="w-6 h-6 rounded bg-blue-50 flex items-center justify-center">
-              <Bath className="h-4 w-4 text-blue-500" />
-            </div>
+          <div className="flex items-center gap-2 text-sm text-madmon-secondary-foreground">
+            <Badge variant={"madmon-secondary"} className="p-1.5">
+              <BathIcon className="size-[18px]" />
+            </Badge>
             {unit.bathroomsNumber} Bathroom
           </div>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <div className="w-6 h-6 rounded bg-blue-50 flex items-center justify-center">
-              <Ruler className="h-4 w-4 text-blue-500" />
-            </div>
+          <div className="flex items-center gap-2 text-sm text-madmon-secondary-foreground">
+            <Badge variant={"madmon-secondary"} className="p-1.5">
+              <RiRuler2Line className="size-[18px]" />
+            </Badge>
             {unit.space} m
           </div>
         </div>
 
-        <Button variant="outline" className="w-full bg-white hover:bg-gray-50">
-          {unit.status.toLowerCase() === "pending" ? "Assign a Broker" : "Edit"}
-        </Button>
-      </div>
-
+        <div className="mt-6 flex items-center justify-between">
+          {unit.status.toLowerCase() === "reserved" && (
+            <div className="flex items-center gap-2 text-sm text-madmon-secondary-foreground">
+              <Badge variant={"madmon-secondary"} className="p-1.5">
+                <UserIcon className="size-[18px]" />
+              </Badge>
+              Mohamed Sami
+            </div>
+          )}
+          <Button
+            variant="madmon-outline"
+            size={"madmon-lg"}
+            className={cn({
+              "opacity-0 pointer-events-none":
+                unit.status.toLowerCase() === "reserved" ||
+                (unit.status.toLowerCase() !== "rejected" &&
+                  unit.status.toLowerCase() !== "approved"),
+            })}
+          >
+            {unit.status.toLowerCase() === "rejected"
+              ? "Edit"
+              : unit.status.toLowerCase() !== "reserved"
+              ? "Assign a Broker"
+              : ""}
+          </Button>
+          <p className="text-right text-madmon-secondary-foreground">
+            <span className="font-medium">Added</span>
+            <br />
+            <span className="ml-1 text-madmon-secondary-foreground">
+              {new Date(unit.createdAt).toLocaleDateString()}
+            </span>
+          </p>
+        </div>
+      </CardContent>
+      {/* Delete button */}
       <button
         onClick={() => onDelete(unit.id)}
         className="group h-full w-[60px] bg-[#FF8A8A] hover:bg-red-400 transition-colors flex items-center justify-center"
       >
         <Trash2 className="h-5 w-5 text-white" />
       </button>
-    </div>
+    </Card>
   );
 }

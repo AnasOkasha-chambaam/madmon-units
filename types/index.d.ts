@@ -13,6 +13,18 @@ unit object example: {
 }
 */
 
+/* Helpers */
+declare type TSortOption = "date" | "price";
+declare type TSortDirectionOption = "asc" | "desc";
+
+declare type TUnitStatus =
+  | "approved"
+  | "pending"
+  | "reserved"
+  | "rejected"
+  | "sold";
+
+/* Main */
 declare type TUnit = {
   id: string;
 
@@ -25,7 +37,7 @@ declare type TUnit = {
   bedroomsNumber: number;
   bathroomsNumber: number;
 
-  status: string;
+  status: TUnitStatus;
 
   price: number;
 
@@ -36,4 +48,12 @@ declare type TNavigationItem<TIcon> = {
   title: string;
   href: string;
   icon?: TIcon;
+};
+
+/* Store */
+declare type TUnitsStore = {
+  sortBy: TSortOption;
+  sortDirection: TSortDirectionOption;
+  setSortDirection: (sortDirection: TSortDirectionOption) => void;
+  setSortBy: (sort: TSortOption) => void;
 };
