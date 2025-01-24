@@ -15,6 +15,9 @@ export default {
           secondary: {
             foreground: "hsl(var(--madmon-secondary-foreground))",
           },
+          destructive: {
+            DEFAULT: "hsl(var(--madmon-destructive))",
+          },
         },
         money: "hsl(var(--money))",
         button: { primary: "hsl(var(--button-primary))" },

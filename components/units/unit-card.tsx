@@ -1,16 +1,9 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn, formatPrice } from "@/lib/utils";
-import {
-  Bath,
-  BathIcon,
-  BedSingleIcon,
-  Ruler,
-  Trash2,
-  UserIcon,
-} from "lucide-react";
-import { RiRuler2Line } from "react-icons/ri";
+import { BathIcon, BedSingleIcon, TrashIcon, UserIcon } from "lucide-react";
 import Image from "next/image";
+import { RiRuler2Line } from "react-icons/ri";
 import {
   Card,
   CardContent,
@@ -46,15 +39,12 @@ export function UnitCard({ unit, onDelete }: UnitCardProps) {
         />
       </div>
       {/* Content */}
-      <CardContent className="w-full">
+      <CardContent className="w-full mx-2">
         <CardHeader className="flex-1 pt-7 pb-0 px-0">
           <div className="flex items-start justify-between">
             <div className="space-y-3">
               <div className="flex items-center gap-2">
-                <CardTitle className="font-normal">
-                  {/* {unit.name} */}
-                  Grand House Real Estate
-                </CardTitle>
+                <CardTitle className="font-normal">{unit.name}</CardTitle>
                 <Badge
                   variant={`madmon-${unit.status.toLowerCase() as TUnitStatus}`}
                 >
@@ -95,7 +85,7 @@ export function UnitCard({ unit, onDelete }: UnitCardProps) {
           </div>
         </div>
 
-        <div className="mt-6 flex items-center justify-between">
+        <div className="my-6 flex items-center justify-between">
           {unit.status.toLowerCase() === "reserved" && (
             <div className="flex items-center gap-2 text-sm text-madmon-secondary-foreground">
               <Badge variant={"madmon-secondary"} className="p-1.5">
@@ -130,12 +120,21 @@ export function UnitCard({ unit, onDelete }: UnitCardProps) {
         </div>
       </CardContent>
       {/* Delete button */}
-      <button
-        onClick={() => onDelete(unit.id)}
-        className="group h-full w-[60px] bg-[#FF8A8A] hover:bg-red-400 transition-colors flex items-center justify-center"
-      >
-        <Trash2 className="h-5 w-5 text-white" />
-      </button>
+      {unit.status !== "reserved" && (
+        <Button
+          onClick={() => onDelete(unit.id)}
+          variant={"destructive"}
+          className="h-auto rounded-none px-6"
+        >
+          <Image
+            src={"/assets/icons/trash-icon.svg"}
+            alt="trash"
+            width={50}
+            height={50}
+            className="!size-9 text-white"
+          />
+        </Button>
+      )}
     </Card>
   );
 }
