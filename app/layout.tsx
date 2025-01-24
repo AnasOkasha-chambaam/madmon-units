@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import { TopNav } from "@/components/nav/top-nav";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { AppSideNav } from "@/components/side-nav/side-nav";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +35,10 @@ export default function RootLayout({
           <>
             <TopNav />
 
-            {children}
+            <SidebarProvider>
+              <AppSideNav />
+              <div>{children}</div>
+            </SidebarProvider>
           </>
         </Providers>
       </body>

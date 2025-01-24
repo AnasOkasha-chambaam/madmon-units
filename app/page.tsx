@@ -1,9 +1,5 @@
 "use client";
 
-import { ArrowDownAZ, Plus } from "lucide-react";
-import { TopNav } from "@/components/nav/top-nav";
-import { SideNav } from "@/components/nav/side-nav";
-import { UnitCard } from "@/components/units/unit-card";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -11,8 +7,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useUnits, useDeleteUnit } from "@/hooks/use-units";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import { UnitCard } from "@/components/units/unit-card";
+import { useDeleteUnit, useUnits } from "@/hooks/use-units";
 import { useUnitsStore } from "@/store/use-units-store";
+import { ArrowDownAZ, Plus } from "lucide-react";
 
 export default function UnitsPage() {
   const { data: units = [], isLoading } = useUnits();
@@ -29,10 +28,13 @@ export default function UnitsPage() {
   return (
     <div className="min-h-screen">
       <div className="flex">
-        <SideNav />
+        {/* <SideNav /> */}
         <main className="flex-1 p-8">
           <div className="flex items-center justify-between mb-8">
-            <h1 className="text-2xl font-semibold">My Units</h1>
+            <h1 className="text-2xl font-semibold">
+              {/* <SidebarTrigger /> */}
+              My Units
+            </h1>
             <div className="flex items-center gap-4">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
