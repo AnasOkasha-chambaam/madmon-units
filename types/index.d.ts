@@ -31,3 +31,9 @@ declare type TUnit = {
 
   createdAt: string;
 };
+
+declare type TNavigationItem<TIcon> = {
+  title: string;
+  href: string;
+  icon?: TIcon;
+};

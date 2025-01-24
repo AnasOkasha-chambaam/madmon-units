@@ -13,13 +13,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useUnits, useDeleteUnit } from "@/hooks/use-units";
 import { useUnitsStore } from "@/store/use-units-store";
-import { useQueryClient } from "@tanstack/react-query";
 
 export default function UnitsPage() {
   const { data: units = [], isLoading } = useUnits();
   const { mutate: deleteUnit } = useDeleteUnit();
   const { sortBy, setSortBy } = useUnitsStore();
-  const queryClient = useQueryClient();
 
   const sortedUnits = [...units].sort((a, b) => {
     if (sortBy === "date") {
@@ -29,8 +27,7 @@ export default function UnitsPage() {
   });
 
   return (
-    <div className="min-h-screen">
-      <TopNav />
+    <div className="min-h-screen bg-[#F8F9FB]">
       <div className="flex">
         <SideNav />
         <main className="flex-1 p-8">
@@ -53,7 +50,7 @@ export default function UnitsPage() {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <Button>
+              <Button className="bg-[#7666F9] hover:bg-[#6557E5]">
                 <Plus className="mr-2 h-4 w-4" />
                 Add Unit
               </Button>
@@ -61,16 +58,16 @@ export default function UnitsPage() {
           </div>
 
           {isLoading ? (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {[...Array(6)].map((_, i) => (
+            <div className="space-y-4">
+              {[...Array(4)].map((_, i) => (
                 <div
                   key={i}
-                  className="h-[400px] rounded-lg bg-muted animate-pulse"
+                  className="h-[180px] rounded-lg bg-muted animate-pulse"
                 />
               ))}
             </div>
           ) : (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="space-y-4">
               {sortedUnits.map((unit) => (
                 <UnitCard key={unit.id} unit={unit} onDelete={deleteUnit} />
               ))}
