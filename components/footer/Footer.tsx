@@ -54,24 +54,30 @@ export function Footer() {
             </h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/about" className="hover:underline">
+                <a href="https://www.madmon.ai/" className="hover:underline">
                   About Us
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/privacy" className="hover:underline">
+                <a
+                  href="https://www.madmon.ai/privacy_policy"
+                  className="hover:underline"
+                >
                   Privacy Policy
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/support" className="hover:underline">
+                <a href="#" className="hover:underline">
                   Support
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/terms" className="hover:underline">
+                <a
+                  href="https://www.madmon.ai/terms_and_conditions"
+                  className="hover:underline"
+                >
                   Terms & Conditions
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
