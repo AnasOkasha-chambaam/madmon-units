@@ -5,6 +5,7 @@ import { Providers } from "@/components/providers";
 import { TopNav } from "@/components/nav/top-nav";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { AppSideNav } from "@/components/side-nav/side-nav";
+import { Footer } from "@/components/footer/Footer";
 
 const poppins = Poppins({
   // variable: "--font-poppins",
@@ -33,6 +34,7 @@ export default function RootLayout({
               <AppSideNav />
               <SidebarInset>{children}</SidebarInset>
             </SidebarProvider>
+            <Footer />
           </>
         </Providers>
       </body>
