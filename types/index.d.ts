@@ -54,6 +54,17 @@ declare type TNavigationItem<TIcon> = {
 declare type TUnitsStore = {
   sortBy: TSortOption;
   sortOrder: TSortOrderOption;
+
+  page: number;
+  limit: number;
+
+  total: number;
+
   setSortOrder: (sortOrder: TSortOrderOption) => void;
   setSortBy: (sort: TSortOption) => void;
+
+  setPage: (page: number) => void;
+  setLimit: (limit: number) => void;
+
+  setTotal: (total: number) => void;
 };

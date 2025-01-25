@@ -6,6 +6,7 @@ import { TopNav } from "@/components/nav/top-nav";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { AppSideNav } from "@/components/side-nav/side-nav";
 import { Footer } from "@/components/footer/Footer";
+import { Toaster } from "@/components/ui/sonner";
 
 const poppins = Poppins({
   // variable: "--font-poppins",
@@ -37,6 +38,7 @@ export default function RootLayout({
               </SidebarInset>
             </SidebarProvider>
             <Footer />
+            <Toaster richColors theme="light" />
           </>
         </Providers>
       </body>

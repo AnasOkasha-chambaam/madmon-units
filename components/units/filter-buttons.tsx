@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
@@ -12,6 +11,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useUnitsStore } from "@/store/use-units-store";
 import { BarChart, PlusIcon, Settings2Icon } from "lucide-react";
+import { AddOrEditUnitDialog } from "./AddOrEditUnitDialog";
 
 const FilterButtons = () => {
   const { sortBy, sortOrder, setSortBy, setSortOrder } = useUnitsStore();
@@ -66,33 +66,47 @@ const FilterButtons = () => {
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>Order</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem
-            onClick={() => setSortOrder("asc")}
-            className={cn({
-              "bg-madmon-main/10 text-madmon-main": sortOrder === "asc",
-            })}
+          <DropdownMenuRadioGroup
+            value={sortOrder}
+            onValueChange={(value) => setSortOrder(value as TSortOrderOption)}
           >
-            Ascending
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => setSortOrder("desc")}
-            className={cn({
-              "bg-madmon-main/10 text-madmon-main": sortOrder === "desc",
-            })}
+            <DropdownMenuRadioItem
+              value={"asc"}
+              className={cn({
+                "bg-madmon-main/10 text-madmon-main": sortOrder === "asc",
+              })}
+            >
+              Ascending
+            </DropdownMenuRadioItem>
+          </DropdownMenuRadioGroup>
+          <DropdownMenuRadioGroup
+            value={sortOrder}
+            onValueChange={(value) => setSortOrder(value as TSortOrderOption)}
           >
-            Descending
-          </DropdownMenuItem>
+            <DropdownMenuRadioItem
+              value={"desc"}
+              className={cn({
+                "bg-madmon-main/10 text-madmon-main": sortOrder === "desc",
+              })}
+            >
+              Descending
+            </DropdownMenuRadioItem>
+          </DropdownMenuRadioGroup>
         </DropdownMenuContent>
       </DropdownMenu>
       {/* Add Unit */}
-      <Button
-        variant={"madmon-primary"}
-        size={"madmon-lg"}
-        className="max-sm:!w-full"
-      >
-        <PlusIcon />
-        Add Unit
-      </Button>
+      <AddOrEditUnitDialog
+        trigger={
+          <Button
+            variant={"madmon-primary"}
+            size={"madmon-lg"}
+            className="max-sm:!w-full"
+          >
+            <PlusIcon />
+            Add Unit
+          </Button>
+        }
+      />
     </div>
   );
 };

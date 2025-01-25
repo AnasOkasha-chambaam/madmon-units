@@ -1,0 +1,50 @@
+[
+  {
+    "createdAt": "2024-10-02T13:12:45.000000Z",
+    "name": "Newly Added",
+    "coverUrl": "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-170466.jpg?t=st=1737223250~exp=1737226850~hmac=3e175797ac91fbc58598e2a37b2defc6f67a45fc4015b57665078caaefe5fcc4&w=996",
+    "address": "Heliopolis, Egypt",
+    "price": 270000000000,
+    "bedroomsNumber": 2,
+    "bathroomsNumber": 1,
+    "space": 24,
+    "status": "pending",
+    "id": "2222"
+  },
+  {
+    "createdAt": "2024-10-02T13:12:45.000000Z",
+    "name": "Newly Added 2",
+    "coverUrl": "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-170466.jpg?t=st=1737223250~exp=1737226850~hmac=3e175797ac91fbc58598e2a37b2defc6f67a45fc4015b57665078caaefe5fcc4&w=996",
+    "address": "Heliopolis, Egypt",
+    "price": 270000000000,
+    "bedroomsNumber": 2,
+    "bathroomsNumber": 1,
+    "space": 24,
+    "status": "approved",
+    "id": "3333"
+  },
+  {
+    "createdAt": "2024-10-02T13:12:45.000000Z",
+    "name": "Newly Added 3",
+    "coverUrl": "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-170466.jpg?t=st=1737223250~exp=1737226850~hmac=3e175797ac91fbc58598e2a37b2defc6f67a45fc4015b57665078caaefe5fcc4&w=996",
+    "address": "Heliopolis, Egypt",
+    "price": 270000000000,
+    "bedroomsNumber": 2,
+    "bathroomsNumber": 1,
+    "space": 24,
+    "status": "rejected",
+    "id": "4444"
+  },
+  {
+    "createdAt": "2024-10-02T13:12:45.000000Z",
+    "name": "Newly Added 4",
+    "coverUrl": "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-170466.jpg?t=st=1737223250~exp=1737226850~hmac=3e175797ac91fbc58598e2a37b2defc6f67a45fc4015b57665078caaefe5fcc4&w=996",
+    "address": "Heliopolis, Egypt",
+    "price": 270000000000,
+    "bedroomsNumber": 2,
+    "bathroomsNumber": 1,
+    "space": 24,
+    "status": "reserved",
+    "id": "5555"
+  }
+]

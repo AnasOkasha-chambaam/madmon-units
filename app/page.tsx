@@ -5,13 +5,14 @@ import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
 import FilterButtons from "@/components/units/filter-buttons";
+import PaginationButtons from "@/components/units/pagination-buttons";
 import { UnitCard } from "@/components/units/unit-card";
 import { useDeleteUnit, useUnits } from "@/hooks/use-units";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
 export default function UnitsPage() {
   const { data: units = [], isLoading } = useUnits();
-  const { mutate: deleteUnit } = useDeleteUnit();
+  const { mutate: deleteUnit, isPending } = useDeleteUnit();
 
   return (
     <div className="min-h-screen max-w-[100vw]">
@@ -42,64 +43,68 @@ export default function UnitsPage() {
             <ul className="space-y-9">
               {[
                 ...units,
-                ...([
-                  // TODO: Remove this
-                  {
-                    createdAt: "2024-10-02T13:12:45.000000Z",
-                    name: "Newly Added",
-                    coverUrl:
-                      "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-170466.jpg?t=st=1737223250~exp=1737226850~hmac=3e175797ac91fbc58598e2a37b2defc6f67a45fc4015b57665078caaefe5fcc4&w=996",
-                    address: "Heliopolis, Egypt",
-                    price: 270000000000,
-                    bedroomsNumber: 2,
-                    bathroomsNumber: 1,
-                    space: 24,
-                    status: "pending",
-                    id: "2222",
-                  },
-                  {
-                    createdAt: "2024-10-02T13:12:45.000000Z",
-                    name: "Newly Added",
-                    coverUrl:
-                      "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-170466.jpg?t=st=1737223250~exp=1737226850~hmac=3e175797ac91fbc58598e2a37b2defc6f67a45fc4015b57665078caaefe5fcc4&w=996",
-                    address: "Heliopolis, Egypt",
-                    price: 270000000000,
-                    bedroomsNumber: 2,
-                    bathroomsNumber: 1,
-                    space: 24,
-                    status: "approved",
-                    id: "3333",
-                  },
-                  {
-                    createdAt: "2024-10-02T13:12:45.000000Z",
-                    name: "Newly Added",
-                    coverUrl:
-                      "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-170466.jpg?t=st=1737223250~exp=1737226850~hmac=3e175797ac91fbc58598e2a37b2defc6f67a45fc4015b57665078caaefe5fcc4&w=996",
-                    address: "Heliopolis, Egypt",
-                    price: 270000000000,
-                    bedroomsNumber: 2,
-                    bathroomsNumber: 1,
-                    space: 24,
-                    status: "rejected",
-                    id: "4444",
-                  },
-                  {
-                    createdAt: "2024-10-02T13:12:45.000000Z",
-                    name: "Newly Added",
-                    coverUrl:
-                      "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-170466.jpg?t=st=1737223250~exp=1737226850~hmac=3e175797ac91fbc58598e2a37b2defc6f67a45fc4015b57665078caaefe5fcc4&w=996",
-                    address: "Heliopolis, Egypt",
-                    price: 270000000000,
-                    bedroomsNumber: 2,
-                    bathroomsNumber: 1,
-                    space: 24,
-                    status: "reserved",
-                    id: "5555",
-                  },
-                ] as TUnit[]),
+                // ...([
+                //   // TODO: Remove this
+                //   {
+                //     createdAt: "2024-10-02T13:12:45.000000Z",
+                //     name: "Newly Added",
+                //     coverUrl:
+                //       "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-170466.jpg?t=st=1737223250~exp=1737226850~hmac=3e175797ac91fbc58598e2a37b2defc6f67a45fc4015b57665078caaefe5fcc4&w=996",
+                //     address: "Heliopolis, Egypt",
+                //     price: 270000000000,
+                //     bedroomsNumber: 2,
+                //     bathroomsNumber: 1,
+                //     space: 24,
+                //     status: "pending",
+                //     id: "2222",
+                //   },
+                //   {
+                //     createdAt: "2024-10-02T13:12:45.000000Z",
+                //     name: "Newly Added",
+                //     coverUrl:
+                //       "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-170466.jpg?t=st=1737223250~exp=1737226850~hmac=3e175797ac91fbc58598e2a37b2defc6f67a45fc4015b57665078caaefe5fcc4&w=996",
+                //     address: "Heliopolis, Egypt",
+                //     price: 270000000000,
+                //     bedroomsNumber: 2,
+                //     bathroomsNumber: 1,
+                //     space: 24,
+                //     status: "approved",
+                //     id: "3333",
+                //   },
+                //   {
+                //     createdAt: "2024-10-02T13:12:45.000000Z",
+                //     name: "Newly Added",
+                //     coverUrl:
+                //       "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-170466.jpg?t=st=1737223250~exp=1737226850~hmac=3e175797ac91fbc58598e2a37b2defc6f67a45fc4015b57665078caaefe5fcc4&w=996",
+                //     address: "Heliopolis, Egypt",
+                //     price: 270000000000,
+                //     bedroomsNumber: 2,
+                //     bathroomsNumber: 1,
+                //     space: 24,
+                //     status: "rejected",
+                //     id: "4444",
+                //   },
+                //   {
+                //     createdAt: "2024-10-02T13:12:45.000000Z",
+                //     name: "Newly Added",
+                //     coverUrl:
+                //       "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-170466.jpg?t=st=1737223250~exp=1737226850~hmac=3e175797ac91fbc58598e2a37b2defc6f67a45fc4015b57665078caaefe5fcc4&w=996",
+                //     address: "Heliopolis, Egypt",
+                //     price: 270000000000,
+                //     bedroomsNumber: 2,
+                //     bathroomsNumber: 1,
+                //     space: 24,
+                //     status: "reserved",
+                //     id: "5555",
+                //   },
+                // ] as TUnit[]),
               ].map((unit) => (
                 <li key={unit.id}>
-                  <UnitCard unit={unit} onDelete={deleteUnit} />
+                  <UnitCard
+                    unit={unit}
+                    onDelete={deleteUnit}
+                    isDeleting={isPending}
+                  />
                 </li>
               ))}
             </ul>
@@ -110,30 +115,7 @@ export default function UnitsPage() {
             <p className="text-muted-foreground font-medium">
               Showing {units.length} Units
             </p>
-            <ul className="flex items-center gap-2 sm:gap-4">
-              <li>
-                <Button variant={"madmon-pagination"} size={"icon"}>
-                  <ChevronLeftIcon className="!size-6" />
-                </Button>
-              </li>
-              {[...Array(4)].map((_, i) => (
-                <li key={i + "-pagination"}>
-                  <Button
-                    variant={
-                      i === 0 ? "madmon-pagination-active" : "madmon-pagination"
-                    }
-                    size={"icon"}
-                  >
-                    {i + 1}
-                  </Button>
-                </li>
-              ))}
-              <li>
-                <Button variant={"madmon-pagination"} size={"icon"}>
-                  <ChevronRightIcon className="!size-6" />
-                </Button>
-              </li>
-            </ul>
+            <PaginationButtons />
           </div>
         </main>
       </div>

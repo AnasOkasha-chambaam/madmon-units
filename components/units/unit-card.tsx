@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn, formatPrice } from "@/lib/utils";
-import { BathIcon, BedSingleIcon, UserIcon } from "lucide-react";
+import { BathIcon, BedSingleIcon, Loader2, UserIcon } from "lucide-react";
 import Image from "next/image";
 import { RiRuler2Line } from "react-icons/ri";
 import {
@@ -12,13 +12,24 @@ import {
   CardTitle,
 } from "../ui/card";
 import { Separator } from "../ui/separator";
+import { useTransition } from "react";
+import { AddOrEditUnitDialog } from "./AddOrEditUnitDialog";
 
 interface UnitCardProps {
   unit: TUnit;
   onDelete: (id: string) => void;
+  isDeleting: boolean;
 }
 
-export function UnitCard({ unit, onDelete }: UnitCardProps) {
+export function UnitCard({ unit, onDelete, isDeleting }: UnitCardProps) {
+  const [isPending, startTransition] = useTransition();
+
+  const handleDelete = () => {
+    startTransition(() => {
+      onDelete(unit.id);
+    });
+  };
+
   return (
     <Card className="relative bg-madmon-card flex flex-col lg:flex-row rounded-3xl overflow-hidden shadow-xl">
       {/* Image */}
@@ -32,10 +43,10 @@ export function UnitCard({ unit, onDelete }: UnitCardProps) {
           </Badge>
         )}
         <Image
-          // src={unit.coverUrl || "/placeholder.svg"}
-          src={
-            "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-170466.jpg?t=st=1737223250~exp=1737226850~hmac=3e175797ac91fbc58598e2a37b2defc6f67a45fc4015b57665078caaefe5fcc4&w=996"
-          }
+          src={unit.coverUrl || "/placeholder.svg"}
+          // src={
+          //   "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-170466.jpg?t=st=1737223250~exp=1737226850~hmac=3e175797ac91fbc58598e2a37b2defc6f67a45fc4015b57665078caaefe5fcc4&w=996"
+          // }
           alt={unit.name}
           width={140}
           height={190}
@@ -102,27 +113,49 @@ export function UnitCard({ unit, onDelete }: UnitCardProps) {
               Mohamed Sami
             </div>
           )}
-          <Button
-            variant="madmon-outline"
-            size={"madmon-lg"}
-            className={cn("max-sm:!w-full", {
-              "opacity-0 pointer-events-none":
-                unit.status.toLowerCase() === "reserved" ||
-                (unit.status.toLowerCase() !== "rejected" &&
-                  unit.status.toLowerCase() !== "approved"),
-            })}
-          >
-            {unit.status.toLowerCase() === "rejected"
-              ? "Edit"
-              : unit.status.toLowerCase() !== "reserved"
-              ? "Assign a Broker"
-              : ""}
-          </Button>
+          {unit.status === "rejected" ? (
+            <AddOrEditUnitDialog
+              unit={{
+                ...unit,
+              }}
+              trigger={
+                <Button
+                  variant="madmon-outline"
+                  size={"madmon-lg"}
+                  className={cn("max-sm:!w-full", {
+                    "opacity-0 pointer-events-none":
+                      unit.status.toLowerCase() === "reserved" ||
+                      (unit.status.toLowerCase() !== "rejected" &&
+                        unit.status.toLowerCase() !== "approved"),
+                  })}
+                >
+                  Edit
+                </Button>
+              }
+            />
+          ) : (
+            <Button
+              variant="madmon-outline"
+              size={"madmon-lg"}
+              className={cn("max-sm:!w-full", {
+                "opacity-0 pointer-events-none":
+                  unit.status.toLowerCase() === "reserved" ||
+                  (unit.status.toLowerCase() !== "rejected" &&
+                    unit.status.toLowerCase() !== "approved"),
+              })}
+            >
+              Assign a Broker
+            </Button>
+          )}
           <p className="text-left lg:text-right text-madmon-secondary-foreground">
             <span className="font-medium">Added</span>
             <br />
             <span className="ml-1 text-madmon-secondary-foreground">
-              {new Date(unit.createdAt).toLocaleDateString()}
+              {new Date(unit.createdAt).toLocaleDateString("en-GB", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+              })}
             </span>
           </p>
         </div>
@@ -130,17 +163,22 @@ export function UnitCard({ unit, onDelete }: UnitCardProps) {
       {/* Delete button */}
       {unit.status !== "reserved" && (
         <Button
-          onClick={() => onDelete(unit.id)}
+          onClick={() => handleDelete()}
           variant={"destructive"}
           className="h-auto rounded-none py-3 px-5"
+          disabled={isDeleting || isPending}
         >
-          <Image
-            src={"/assets/icons/trash-icon.svg"}
-            alt="trash"
-            width={24}
-            height={24}
-            className="sm:size-6 text-white"
-          />
+          {isPending ? (
+            <Loader2 className="size-6 text-white" />
+          ) : (
+            <Image
+              src={"/assets/icons/trash-icon.svg"}
+              alt="trash"
+              width={24}
+              height={24}
+              className="sm:size-6 text-white"
+            />
+          )}
         </Button>
       )}
     </Card>
