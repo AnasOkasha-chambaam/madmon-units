@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { GlobeIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLangStore } from "@/store/use-lang-store";
 
 const LANGUAGES = [
   {
@@ -27,7 +28,7 @@ const LANGUAGES = [
 ];
 
 export function LangDropdown() {
-  const [lang, setLang] = React.useState("en");
+  const { lang, setLang } = useLangStore();
 
   return (
     <DropdownMenu>
@@ -38,13 +39,16 @@ export function LangDropdown() {
           className="gap-2 text-madmon-main max-md:justify-start"
         >
           <GlobeIcon className="h-4 w-4" />
-          EN
+          {lang.toUpperCase()}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="center">
         <DropdownMenuLabel>Choose a language</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuRadioGroup value={lang} onValueChange={setLang}>
+        <DropdownMenuRadioGroup
+          value={lang}
+          onValueChange={(value) => setLang(value as TLangOption)}
+        >
           {LANGUAGES.map((l) => (
             <DropdownMenuRadioItem
               key={l.value}

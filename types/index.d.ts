@@ -24,6 +24,8 @@ declare type TUnitStatus =
   | "rejected"
   | "sold";
 
+declare type TLangOption = "en" | "ar";
+
 /* Main */
 declare type TUnit = {
   id: string;
@@ -67,4 +69,9 @@ declare type TUnitsStore = {
   setLimit: (limit: number) => void;
 
   setTotal: (total: number) => void;
+};
+
+declare type TLangStore = {
+  lang: TLangOption;
+  setLang: (lang: TLangOption) => void;
 };
