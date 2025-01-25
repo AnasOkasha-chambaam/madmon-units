@@ -8,9 +8,13 @@ body {
 
 @layer base {
   :root {
-    --main-color: 237 96% 49%;
+    --madmon-main: 237 96% 49%;
     --madmon-secondary-foreground: 0 0% 29%;
     --madmon-destructive: 0 100% 47%;
+    --madmon-muted: 210 8% 95%;
+    --madmon-muted-foreground: 217 8% 66%;
+    --madmon-card: 210 8% 95%;
+    --madmon-info: 54 100% 47%;
     --money: 0 100% 47%;
     --button-primary: 240 100% 70%;
 
@@ -56,8 +60,13 @@ body {
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
   .dark {
-    --main-color: 237 96% 49%;
+    --madmon-main: 237 96% 49%;
     --madmon-secondary-foreground: 0 0% 29%;
+    --madmon-destructive: 0 100% 47%;
+    --madmon-muted: 210 8% 95%;
+    --madmon-muted-foreground: 217 8% 66%;
+    --madmon-card: 210 8% 95%;
+    --madmon-info: 54 100% 47%;
     --money: 0 100% 47%;
     --button-primary: 240 100% 70%;
 

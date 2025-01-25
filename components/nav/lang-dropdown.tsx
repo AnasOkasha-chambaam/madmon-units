@@ -32,7 +32,7 @@ export function LangDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="gap-2 text-main-color">
+        <Button variant="ghost" size="sm" className="gap-2 text-madmon-main">
           <GlobeIcon className="h-4 w-4" />
           EN
         </Button>
@@ -46,7 +46,7 @@ export function LangDropdown() {
               key={l.value}
               value={l.value}
               className={cn({
-                "bg-main-color/10 text-main-color": lang === l.value,
+                "bg-madmon-main/10 text-madmon-main": lang === l.value,
               })}
             >
               {l.label}

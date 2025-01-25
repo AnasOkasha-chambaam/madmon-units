@@ -1,9 +1,11 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import FilterButtons from "@/components/units/filter-buttons";
 import { UnitCard } from "@/components/units/unit-card";
 import { useDeleteUnit, useUnits } from "@/hooks/use-units";
-import { useUnitsStore } from "@/store/use-units-store";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
 export default function UnitsPage() {
   const { data: units = [], isLoading } = useUnits();
@@ -23,16 +25,15 @@ export default function UnitsPage() {
           </div>
 
           {isLoading ? (
-            <div className="space-y-4">
+            <ul className="space-y-4">
               {[...Array(4)].map((_, i) => (
-                <div
-                  key={i}
-                  className="h-[180px] rounded-lg bg-muted animate-pulse"
-                />
+                <li key={i + "-skeleton"}>
+                  <Skeleton className="h-[180px] rounded-lg" />
+                </li>
               ))}
-            </div>
+            </ul>
           ) : (
-            <div className="space-y-9">
+            <ul className="space-y-9">
               {[
                 ...units,
                 ...([
@@ -78,10 +79,43 @@ export default function UnitsPage() {
                   },
                 ] as TUnit[]),
               ].map((unit) => (
-                <UnitCard key={unit.id} unit={unit} onDelete={deleteUnit} />
+                <li key={unit.id}>
+                  <UnitCard unit={unit} onDelete={deleteUnit} />
+                </li>
               ))}
-            </div>
+            </ul>
           )}
+
+          {/* <Pagination /> */}
+          <div className="flex items-center justify-between py-12 px-1">
+            <p className="text-muted-foreground font-medium">
+              Showing {units.length} Units
+            </p>
+            <ul className="flex items-center gap-4">
+              <li>
+                <Button variant={"madmon-pagination"} size={"icon"}>
+                  <ChevronLeftIcon className="!size-6" />
+                </Button>
+              </li>
+              {[...Array(4)].map((_, i) => (
+                <li key={i + "-pagination"}>
+                  <Button
+                    variant={
+                      i === 0 ? "madmon-pagination-active" : "madmon-pagination"
+                    }
+                    size={"icon"}
+                  >
+                    {i + 1}
+                  </Button>
+                </li>
+              ))}
+              <li>
+                <Button variant={"madmon-pagination"} size={"icon"}>
+                  <ChevronRightIcon className="!size-6" />
+                </Button>
+              </li>
+            </ul>
+          </div>
         </main>
       </div>
     </div>

@@ -45,9 +45,9 @@ export function AppSideNav() {
                     <a
                       href={item.href}
                       className={cn(
-                        "border border-border/30 bg-muted text-main-color flex items-center text-lg p-4",
+                        "border border-border/30 bg-madmon-muted text-madmon-main flex items-center text-lg p-4",
                         {
-                          "!border-main-color": pathname === item.href,
+                          "!border-madmon-main": pathname === item.href,
                         }
                       )}
                     >
@@ -55,7 +55,7 @@ export function AppSideNav() {
                       {
                         <Circle
                           className={cn(
-                            "!size-2.5  fill-main-color text-main-color",
+                            "!size-2.5  fill-madmon-main text-madmon-main",
                             {
                               "opacity-0": pathname !== item.href,
                             }

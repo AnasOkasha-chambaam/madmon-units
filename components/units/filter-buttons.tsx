@@ -41,7 +41,7 @@ const FilterButtons = () => {
             <DropdownMenuRadioItem
               value={"date"}
               className={cn({
-                "bg-main-color/10 text-main-color": sortBy === "date",
+                "bg-madmon-main/10 text-madmon-main": sortBy === "date",
               })}
             >
               Date
@@ -55,7 +55,7 @@ const FilterButtons = () => {
             <DropdownMenuRadioItem
               value={"price"}
               className={cn({
-                "bg-main-color/10 text-main-color": sortBy === "price",
+                "bg-madmon-main/10 text-madmon-main": sortBy === "price",
               })}
             >
               Price
@@ -76,7 +76,7 @@ const FilterButtons = () => {
           <DropdownMenuItem
             onClick={() => setSortDirection("asc")}
             className={cn({
-              "bg-main-color/10 text-main-color": sortDirection === "asc",
+              "bg-madmon-main/10 text-madmon-main": sortDirection === "asc",
             })}
           >
             Ascending
@@ -84,7 +84,7 @@ const FilterButtons = () => {
           <DropdownMenuItem
             onClick={() => setSortDirection("desc")}
             className={cn({
-              "bg-main-color/10 text-main-color": sortDirection === "desc",
+              "bg-madmon-main/10 text-madmon-main": sortDirection === "desc",
             })}
           >
             Descending

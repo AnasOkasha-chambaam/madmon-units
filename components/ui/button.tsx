@@ -24,6 +24,10 @@ const buttonVariants = cva(
           "border border-button-primary text-button-primary bg-background hover:bg-accent rounded-lg font-semibold",
         "madmon-destructive":
           "bg-madmon-destructive text-destructive-foreground hover:bg-madmon-destructive/90 rounded-lg",
+        "madmon-pagination":
+          "bg-background text-madmon-main border-madmon-main border hover:bg-accent rounded-[50%] font-medium",
+        "madmon-pagination-active":
+          "bg-madmon-main text-madmon-info border-madmon-main border hover:bg-madmon-main/80 rounded-[50%] font-medium",
       },
       size: {
         default: "h-10 px-4 py-2",

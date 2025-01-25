@@ -19,7 +19,7 @@ interface UnitCardProps {
 
 export function UnitCard({ unit, onDelete }: UnitCardProps) {
   return (
-    <Card className="relative bg-muted flex rounded-3xl overflow-hidden shadow-lg">
+    <Card className="relative bg-madmon-card flex rounded-3xl overflow-hidden shadow-xl">
       {/* Image */}
       <div className="relative">
         {unit.status.toLowerCase() === "reserved" && (

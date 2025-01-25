@@ -25,7 +25,7 @@ const NAVIGATION_ITEMS: TNavigationItem<LucideIcon>[] = [
 
 const NavItems = () => {
   return (
-    <nav className="hidden md:flex items-center gap-6 text-main-color font-medium">
+    <nav className="hidden md:flex items-center gap-6 text-madmon-main font-medium">
       {NAVIGATION_ITEMS.map((ni) => (
         <Link
           key={ni.href}

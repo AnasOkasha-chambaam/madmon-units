@@ -10,13 +10,25 @@ export default {
   theme: {
     extend: {
       colors: {
-        "main-color": "hsl(var(--main-color))",
         madmon: {
+          main: {
+            DEFAULT: "hsl(var(--madmon-main))",
+          },
           secondary: {
             foreground: "hsl(var(--madmon-secondary-foreground))",
           },
           destructive: {
             DEFAULT: "hsl(var(--madmon-destructive))",
+          },
+          muted: {
+            DEFAULT: "hsl(var(--madmon-muted))",
+            foreground: "hsl(var(--madmon-muted-foreground))",
+          },
+          card: {
+            DEFAULT: "hsl(var(--madmon-card))",
+          },
+          info: {
+            DEFAULT: "hsl(var(--madmon-info))",
           },
         },
         money: "hsl(var(--money))",
