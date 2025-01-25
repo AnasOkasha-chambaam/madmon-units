@@ -44,9 +44,6 @@ export function UnitCard({ unit, onDelete, isDeleting }: UnitCardProps) {
         )}
         <Image
           src={unit.coverUrl || "/placeholder.svg"}
-          // src={
-          //   "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-170466.jpg?t=st=1737223250~exp=1737226850~hmac=3e175797ac91fbc58598e2a37b2defc6f67a45fc4015b57665078caaefe5fcc4&w=996"
-          // }
           alt={unit.name}
           width={140}
           height={190}

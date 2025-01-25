@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -8,7 +7,6 @@ import FilterButtons from "@/components/units/filter-buttons";
 import PaginationButtons from "@/components/units/pagination-buttons";
 import { UnitCard } from "@/components/units/unit-card";
 import { useDeleteUnit, useUnits } from "@/hooks/use-units";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
 export default function UnitsPage() {
   const { data: units = [], isLoading } = useUnits();
@@ -41,64 +39,7 @@ export default function UnitsPage() {
             </ul>
           ) : (
             <ul className="space-y-9">
-              {[
-                ...units,
-                // ...([
-                //   // TODO: Remove this
-                //   {
-                //     createdAt: "2024-10-02T13:12:45.000000Z",
-                //     name: "Newly Added",
-                //     coverUrl:
-                //       "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-170466.jpg?t=st=1737223250~exp=1737226850~hmac=3e175797ac91fbc58598e2a37b2defc6f67a45fc4015b57665078caaefe5fcc4&w=996",
-                //     address: "Heliopolis, Egypt",
-                //     price: 270000000000,
-                //     bedroomsNumber: 2,
-                //     bathroomsNumber: 1,
-                //     space: 24,
-                //     status: "pending",
-                //     id: "2222",
-                //   },
-                //   {
-                //     createdAt: "2024-10-02T13:12:45.000000Z",
-                //     name: "Newly Added",
-                //     coverUrl:
-                //       "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-170466.jpg?t=st=1737223250~exp=1737226850~hmac=3e175797ac91fbc58598e2a37b2defc6f67a45fc4015b57665078caaefe5fcc4&w=996",
-                //     address: "Heliopolis, Egypt",
-                //     price: 270000000000,
-                //     bedroomsNumber: 2,
-                //     bathroomsNumber: 1,
-                //     space: 24,
-                //     status: "approved",
-                //     id: "3333",
-                //   },
-                //   {
-                //     createdAt: "2024-10-02T13:12:45.000000Z",
-                //     name: "Newly Added",
-                //     coverUrl:
-                //       "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-170466.jpg?t=st=1737223250~exp=1737226850~hmac=3e175797ac91fbc58598e2a37b2defc6f67a45fc4015b57665078caaefe5fcc4&w=996",
-                //     address: "Heliopolis, Egypt",
-                //     price: 270000000000,
-                //     bedroomsNumber: 2,
-                //     bathroomsNumber: 1,
-                //     space: 24,
-                //     status: "rejected",
-                //     id: "4444",
-                //   },
-                //   {
-                //     createdAt: "2024-10-02T13:12:45.000000Z",
-                //     name: "Newly Added",
-                //     coverUrl:
-                //       "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-170466.jpg?t=st=1737223250~exp=1737226850~hmac=3e175797ac91fbc58598e2a37b2defc6f67a45fc4015b57665078caaefe5fcc4&w=996",
-                //     address: "Heliopolis, Egypt",
-                //     price: 270000000000,
-                //     bedroomsNumber: 2,
-                //     bathroomsNumber: 1,
-                //     space: 24,
-                //     status: "reserved",
-                //     id: "5555",
-                //   },
-                // ] as TUnit[]),
-              ].map((unit) => (
+              {units.map((unit) => (
                 <li key={unit.id}>
                   <UnitCard
                     unit={unit}

@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { SheetDescription, SheetHeader, SheetTitle } from "../ui/sheet";
 
 // Menu items.
 const items: TNavigationItem<LucideIcon>[] = [

@@ -111,6 +111,7 @@ export function AddOrEditUnitDialog({
       setIsOpen(false);
       form.reset();
     } catch (error) {
+      console.error(error);
       toast.error("Error", {
         description: "Failed to save unit. Please try again.",
       });
@@ -269,7 +270,7 @@ export function AddOrEditUnitDialog({
                         />
                       </FormControl>
                       <FormDescription>
-                        Provide a valid URL for the unit's cover image.
+                        Provide a valid URL for the unit&apos;s cover image.
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
