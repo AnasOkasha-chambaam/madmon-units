@@ -31,7 +31,10 @@ export function UnitCard({ unit, onDelete }: UnitCardProps) {
           </Badge>
         )}
         <Image
-          src={unit.coverUrl || "/placeholder.svg"}
+          // src={unit.coverUrl || "/placeholder.svg"}
+          src={
+            "https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-170466.jpg?t=st=1737223250~exp=1737226850~hmac=3e175797ac91fbc58598e2a37b2defc6f67a45fc4015b57665078caaefe5fcc4&w=996"
+          }
           alt={unit.name}
           width={140}
           height={190}
@@ -65,30 +68,30 @@ export function UnitCard({ unit, onDelete }: UnitCardProps) {
         </CardHeader>
 
         <div className="flex items-center gap-6 my-4">
-          <div className="flex items-center gap-2 text-sm text-madmon-secondary-foreground">
-            <Badge variant={"madmon-secondary"} className="p-1.5">
+          <div className="flex items-center  text-sm text-madmon-secondary-foreground">
+            <Badge variant={"madmon-secondary"} className="p-1.5 mr-2">
               <BedSingleIcon className="size-[18px]" />
             </Badge>
             {unit.bedroomsNumber} Rooms
           </div>
-          <div className="flex items-center gap-2 text-sm text-madmon-secondary-foreground">
-            <Badge variant={"madmon-secondary"} className="p-1.5">
+          <div className="flex items-center  text-sm text-madmon-secondary-foreground">
+            <Badge variant={"madmon-secondary"} className="p-1.5 mr-2">
               <BathIcon className="size-[18px]" />
             </Badge>
             {unit.bathroomsNumber} Bathroom
           </div>
-          <div className="flex items-center gap-2 text-sm text-madmon-secondary-foreground">
-            <Badge variant={"madmon-secondary"} className="p-1.5">
+          <div className="flex items-center  text-sm text-madmon-secondary-foreground">
+            <Badge variant={"madmon-secondary"} className="p-1.5 mr-2">
               <RiRuler2Line className="size-[18px]" />
             </Badge>
-            {unit.space} m
+            {unit.space} m<sup>2</sup>
           </div>
         </div>
 
         <div className="my-6 flex items-center justify-between">
           {unit.status.toLowerCase() === "reserved" && (
-            <div className="flex items-center gap-2 text-sm text-madmon-secondary-foreground">
-              <Badge variant={"madmon-secondary"} className="p-1.5">
+            <div className="flex items-center  text-sm text-madmon-secondary-foreground">
+              <Badge variant={"madmon-secondary"} className="p-1.5 mr-2">
                 <UserIcon className="size-[18px]" />
               </Badge>
               Mohamed Sami
