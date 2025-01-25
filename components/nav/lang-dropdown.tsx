@@ -32,12 +32,16 @@ export function LangDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="gap-2 text-madmon-main">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="gap-2 text-madmon-main max-md:justify-start"
+        >
           <GlobeIcon className="h-4 w-4" />
           EN
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
+      <DropdownMenuContent className="w-56" align="center">
         <DropdownMenuLabel>Choose a language</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup value={lang} onValueChange={setLang}>

@@ -11,19 +11,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { useUnitsStore } from "@/store/use-units-store";
-import {
-  ArrowDownAZ,
-  BarChart,
-  PlusIcon,
-  Settings2Icon,
-  SortAscIcon,
-} from "lucide-react";
+import { BarChart, PlusIcon, Settings2Icon } from "lucide-react";
 
 const FilterButtons = () => {
-  const { sortBy, sortDirection, setSortBy, setSortDirection } =
-    useUnitsStore();
+  const { sortBy, sortOrder, setSortBy, setSortOrder } = useUnitsStore();
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-4 justify-end w-full lg:w-auto">
       {/* Sort By */}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -63,7 +56,7 @@ const FilterButtons = () => {
           </DropdownMenuRadioGroup>
         </DropdownMenuContent>
       </DropdownMenu>
-      {/* Sort Direction */}
+      {/* Order */}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="madmon-primary" size="sm">
@@ -71,20 +64,20 @@ const FilterButtons = () => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuLabel>Sort Direction</DropdownMenuLabel>
+          <DropdownMenuLabel>Order</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem
-            onClick={() => setSortDirection("asc")}
+            onClick={() => setSortOrder("asc")}
             className={cn({
-              "bg-madmon-main/10 text-madmon-main": sortDirection === "asc",
+              "bg-madmon-main/10 text-madmon-main": sortOrder === "asc",
             })}
           >
             Ascending
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() => setSortDirection("desc")}
+            onClick={() => setSortOrder("desc")}
             className={cn({
-              "bg-madmon-main/10 text-madmon-main": sortDirection === "desc",
+              "bg-madmon-main/10 text-madmon-main": sortOrder === "desc",
             })}
           >
             Descending
@@ -92,7 +85,11 @@ const FilterButtons = () => {
         </DropdownMenuContent>
       </DropdownMenu>
       {/* Add Unit */}
-      <Button variant={"madmon-primary"} size={"madmon-lg"}>
+      <Button
+        variant={"madmon-primary"}
+        size={"madmon-lg"}
+        className="max-sm:!w-full"
+      >
         <PlusIcon />
         Add Unit
       </Button>

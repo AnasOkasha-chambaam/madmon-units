@@ -25,12 +25,14 @@ const NAVIGATION_ITEMS: TNavigationItem<LucideIcon>[] = [
 
 const NavItems = () => {
   return (
-    <nav className="hidden md:flex items-center gap-6 text-madmon-main font-medium">
+    <nav className=" flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-6 text-madmon-main font-medium">
       {NAVIGATION_ITEMS.map((ni) => (
         <Link
           key={ni.href}
           href={ni.href}
-          className={cn({ "flex items-center gap-1": !!ni.icon })}
+          className={cn("max-md:w-full max-md:bg-madmon-muted max-md:p-3", {
+            "flex items-center gap-1": !!ni.icon,
+          })}
         >
           {ni.icon && <ni.icon className="h-4 w-4" />}
           {ni.title}

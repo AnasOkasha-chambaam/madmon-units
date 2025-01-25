@@ -1,8 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import { LangDropdown } from "./lang-dropdown";
 import NavItems from "./nav-items";
 import UserDropdown from "./user-dropdown";
+import Image from "next/image";
+import { MobileNav } from "./mobile-nav";
 
 export function TopNav() {
   return (
@@ -19,14 +20,12 @@ export function TopNav() {
             />
           </Link>
         </div>
-        <div className="flex items-center gap-4">
-          {/* Nav items */}
+        <div className="hidden md:flex items-center gap-4">
           <NavItems />
-          {/* Language dropdown */}
           <LangDropdown />
-          {/* User dropdown */}
           <UserDropdown />
         </div>
+        <MobileNav />
       </div>
     </header>
   );

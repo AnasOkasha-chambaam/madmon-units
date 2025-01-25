@@ -15,7 +15,7 @@ unit object example: {
 
 /* Helpers */
 declare type TSortOption = "date" | "price";
-declare type TSortDirectionOption = "asc" | "desc";
+declare type TSortOrderOption = "asc" | "desc";
 
 declare type TUnitStatus =
   | "approved"
@@ -53,7 +53,7 @@ declare type TNavigationItem<TIcon> = {
 /* Store */
 declare type TUnitsStore = {
   sortBy: TSortOption;
-  sortDirection: TSortDirectionOption;
-  setSortDirection: (sortDirection: TSortDirectionOption) => void;
+  sortOrder: TSortOrderOption;
+  setSortOrder: (sortOrder: TSortOrderOption) => void;
   setSortBy: (sort: TSortOption) => void;
 };

@@ -32,7 +32,9 @@ export default function RootLayout({
 
             <SidebarProvider className="pr-9">
               <AppSideNav />
-              <SidebarInset>{children}</SidebarInset>
+              <SidebarInset>
+                <div>{children}</div>
+              </SidebarInset>
             </SidebarProvider>
             <Footer />
           </>

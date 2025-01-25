@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn, formatPrice } from "@/lib/utils";
-import { BathIcon, BedSingleIcon, TrashIcon, UserIcon } from "lucide-react";
+import { BathIcon, BedSingleIcon, UserIcon } from "lucide-react";
 import Image from "next/image";
 import { RiRuler2Line } from "react-icons/ri";
 import {
@@ -11,6 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
+import { Separator } from "../ui/separator";
 
 interface UnitCardProps {
   unit: TUnit;
@@ -19,9 +20,9 @@ interface UnitCardProps {
 
 export function UnitCard({ unit, onDelete }: UnitCardProps) {
   return (
-    <Card className="relative bg-madmon-card flex rounded-3xl overflow-hidden shadow-xl">
+    <Card className="relative bg-madmon-card flex flex-col lg:flex-row rounded-3xl overflow-hidden shadow-xl">
       {/* Image */}
-      <div className="relative">
+      <div className="relative w-full lg:!w-60 h-48 lg:h-auto">
         {unit.status.toLowerCase() === "reserved" && (
           <Badge
             variant={"madmon-reserved"}
@@ -38,28 +39,30 @@ export function UnitCard({ unit, onDelete }: UnitCardProps) {
           alt={unit.name}
           width={140}
           height={190}
-          className="w-80 h-full object-cover"
+          className="w-full xl:w-80 h-full object-cover"
         />
       </div>
       {/* Content */}
-      <CardContent className="w-full mx-2">
-        <CardHeader className="flex-1 pt-7 pb-0 px-0">
-          <div className="flex items-start justify-between">
-            <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <CardTitle className="font-normal">{unit.name}</CardTitle>
+      <CardContent className="flex-1 p-4 sm:p-6">
+        <CardHeader className="p-0 mb-4">
+          <div className="flex max-sm:flex-col-reverse flex-row items-start justify-between">
+            <div className="space-y-2 mb-2 sm:mb-0">
+              <div className="flex lg:items-center items-start gap-2 flex-col lg:flex-row">
+                <CardTitle className="font-normal max-lg:text-xl">
+                  {unit.name}
+                </CardTitle>
                 <Badge
                   variant={`madmon-${unit.status.toLowerCase() as TUnitStatus}`}
                 >
                   {unit.status[0].toUpperCase() + unit.status.slice(1)}
                 </Badge>
               </div>
-              <CardDescription className="text-base text-madmon-secondary-foreground">
+              <CardDescription className="text-sm lg:text-base text-madmon-secondary-foreground">
                 {unit.address}
               </CardDescription>
             </div>
-            <div className="text-right">
-              <p className="font-semibold text-2xl text-money">
+            <div className="text-left sm:text-right max-sm:text-right max-sm:w-full">
+              <p className="font-semibold text-xl lg:text-2xl text-money">
                 {formatPrice(unit.price).replace("EGP", "")}{" "}
                 <span className="font-normal text-base">EGP</span>
               </p>
@@ -67,20 +70,20 @@ export function UnitCard({ unit, onDelete }: UnitCardProps) {
           </div>
         </CardHeader>
 
-        <div className="flex items-center gap-6 my-4">
-          <div className="flex items-center  text-sm text-madmon-secondary-foreground">
+        <div className="flex flex-wrap items-center gap-4 sm:gap-6 my-4">
+          <div className="flex items-center text-sm text-madmon-secondary-foreground">
             <Badge variant={"madmon-secondary"} className="p-1.5 mr-2">
               <BedSingleIcon className="size-[18px]" />
             </Badge>
             {unit.bedroomsNumber} Rooms
           </div>
-          <div className="flex items-center  text-sm text-madmon-secondary-foreground">
+          <div className="flex items-center text-sm text-madmon-secondary-foreground">
             <Badge variant={"madmon-secondary"} className="p-1.5 mr-2">
               <BathIcon className="size-[18px]" />
             </Badge>
             {unit.bathroomsNumber} Bathroom
           </div>
-          <div className="flex items-center  text-sm text-madmon-secondary-foreground">
+          <div className="flex items-center text-sm text-madmon-secondary-foreground">
             <Badge variant={"madmon-secondary"} className="p-1.5 mr-2">
               <RiRuler2Line className="size-[18px]" />
             </Badge>
@@ -88,9 +91,11 @@ export function UnitCard({ unit, onDelete }: UnitCardProps) {
           </div>
         </div>
 
-        <div className="my-6 flex items-center justify-between">
+        <Separator className="my-2 sm:hidden" />
+
+        <div className="mt-4 sm:mt-6 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 sm:gap-0">
           {unit.status.toLowerCase() === "reserved" && (
-            <div className="flex items-center  text-sm text-madmon-secondary-foreground">
+            <div className="flex items-center text-sm text-madmon-secondary-foreground">
               <Badge variant={"madmon-secondary"} className="p-1.5 mr-2">
                 <UserIcon className="size-[18px]" />
               </Badge>
@@ -100,7 +105,7 @@ export function UnitCard({ unit, onDelete }: UnitCardProps) {
           <Button
             variant="madmon-outline"
             size={"madmon-lg"}
-            className={cn({
+            className={cn("max-sm:!w-full", {
               "opacity-0 pointer-events-none":
                 unit.status.toLowerCase() === "reserved" ||
                 (unit.status.toLowerCase() !== "rejected" &&
@@ -113,7 +118,7 @@ export function UnitCard({ unit, onDelete }: UnitCardProps) {
               ? "Assign a Broker"
               : ""}
           </Button>
-          <p className="text-right text-madmon-secondary-foreground">
+          <p className="text-left lg:text-right text-madmon-secondary-foreground">
             <span className="font-medium">Added</span>
             <br />
             <span className="ml-1 text-madmon-secondary-foreground">
@@ -127,14 +132,14 @@ export function UnitCard({ unit, onDelete }: UnitCardProps) {
         <Button
           onClick={() => onDelete(unit.id)}
           variant={"destructive"}
-          className="h-auto rounded-none px-6"
+          className="h-auto rounded-none py-3 px-5"
         >
           <Image
             src={"/assets/icons/trash-icon.svg"}
             alt="trash"
-            width={50}
-            height={50}
-            className="!size-9 text-white"
+            width={24}
+            height={24}
+            className="sm:size-6 text-white"
           />
         </Button>
       )}
