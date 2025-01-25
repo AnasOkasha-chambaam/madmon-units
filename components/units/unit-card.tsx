@@ -101,7 +101,7 @@ export function UnitCard({ unit, onDelete, isDeleting }: UnitCardProps) {
 
         <Separator className="my-2 sm:hidden" />
 
-        <div className="mt-4 sm:mt-6 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 sm:gap-0">
+        <div className="mt-4 sm:mt-6 flex flex-col min-[1090px]:flex-row items-start min-[1090px]:items-center justify-between gap-4 sm:gap-0">
           {unit.status.toLowerCase() === "reserved" && (
             <div className="flex items-center text-sm text-madmon-secondary-foreground">
               <Badge variant={"madmon-secondary"} className="p-1.5 mr-2">
